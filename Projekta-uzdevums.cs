@@ -13,13 +13,13 @@ namespace TeslaRentalPlatform
 
             Console.WriteLine("Tesla Rental Platform Initialized!");
 
-            // Pievienojam automašīnas un klientus (piemērs)
+            
             Database.AddCar(new Car { Model = "Model 3", HourlyRate = 10, KilometerRate = 0.5 });
             Database.AddCar(new Car { Model = "Model Y", HourlyRate = 15, KilometerRate = 0.7 });
 
             Database.AddCustomer(new Customer { FullName = "John Doe", Email = "john.doe@example.com" });
 
-            // Veicam īri (piemērs)
+            
             Rental rental = new Rental
             {
                 CustomerId = 1,
@@ -36,7 +36,7 @@ namespace TeslaRentalPlatform
         }
     }
 
-    // Modelis automašīnai
+    
     public class Car
     {
         public int Id { get; set; }
@@ -45,7 +45,7 @@ namespace TeslaRentalPlatform
         public double KilometerRate { get; set; }
     }
 
-    // Modelis klientam
+    
     public class Customer
     {
         public int Id { get; set; }
@@ -53,7 +53,7 @@ namespace TeslaRentalPlatform
         public string Email { get; set; }
     }
 
-    // Modelis īrei
+    
     public class Rental
     {
         public int Id { get; set; }
@@ -69,14 +69,13 @@ namespace TeslaRentalPlatform
             double hours = (EndTime - StartTime).TotalHours;
             PaymentAmount = (hours * car.HourlyRate) + (KilometersDriven * car.KilometerRate);
         }
-    }
 
-    // Datubāzes pārvaldība
+        
     public static class Database
     {
         private const string ConnectionString = "Data Source=tesla_rental.db;Version=3;";
 
-        // Inicializē datubāzi
+        
         public static void Initialize()
         {
             using (var connection = new SQLiteConnection(ConnectionString))
@@ -111,7 +110,7 @@ namespace TeslaRentalPlatform
             }
         }
 
-        // Pievieno automašīnu
+        
         public static void AddCar(Car car)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
@@ -128,7 +127,7 @@ namespace TeslaRentalPlatform
             }
         }
 
-        // Iegūst automašīnu
+        
         public static Car GetCar(int carId)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
@@ -156,7 +155,7 @@ namespace TeslaRentalPlatform
             return null;
         }
 
-        // Pievieno klientu
+        
         public static void AddCustomer(Customer customer)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
@@ -172,7 +171,7 @@ namespace TeslaRentalPlatform
             }
         }
 
-        // Pievieno īri
+        
         public static void AddRental(Rental rental)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
@@ -193,7 +192,7 @@ namespace TeslaRentalPlatform
             }
         }
 
-        // Izpilda SQL komandu
+        
         private static void ExecuteCommand(SQLiteConnection connection, string commandText)
         {
             using (var command = new SQLiteCommand(commandText, connection))
